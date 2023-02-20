@@ -1,50 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_hex.c                                      :+:      :+:    :+:   */
+/*   ft_atoi_long.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 14:13:57 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/07 16:24:51 by ncortigi         ###   ########.fr       */
+/*   Created: 2023/02/20 16:24:24 by ncortigi          #+#    #+#             */
+/*   Updated: 2023/02/20 16:37:51 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_hex(char c)
+long	ft_converter_long(const char *str)
 {
-	char	*u_base;
-	char	*base;
+	long	sum;
 	int		i;
 
 	i = 0;
-	u_base = "0123456789ABCDEF";
-	base = "0123456789abcdef";
-	while (base[i])
+	sum = 0;
+	while ((str[i] > 47 && str[i] < 58) && str[i])
 	{
-		if (c == '0')
-			return (0);
-		if (base[i] == c)
-			return (i);
-		else if (u_base[i] == c)
-			return (i);
+		sum = sum * 10 + (str[i] - 48);
 		i++;
 	}
-	return (0);
+	return (sum);
 }
 
-int	ft_atoi_hex(char *str)
+long	ft_atoi_long(const char *nptr)
 {
 	int	i;
-	int	result;
+	int	meno;
 
-	i = 2;
-	result = 0;
-	while (str[i])
+	i = 0;
+	meno = 1;
+	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == 45)
 	{
-		result = result * 16 + ft_hex(str[i]);
+		meno *= -1;
 		i++;
 	}
-	return (result);
+	else if (nptr[i] == 43)
+		i++;
+	return (ft_converter_long(&nptr[i]) * meno);
 }

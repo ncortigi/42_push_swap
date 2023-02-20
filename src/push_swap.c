@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:13:25 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/01/11 15:16:30 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:07:02 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,15 @@
 int	main(int ac, char **av)
 {
 	if (ac < 2)
+		return (0);
+	if (!check_input(av))
 	{
 		ft_printf("Error\n");
+		return (0);
+	}
+	else
+	{
+		ft_printf("lesgooo\n");
 		return (0);
 	}
 }
@@ -63,15 +70,4 @@ rrb (reverse rotate b): Shift down all elements of stack b by 1.
 The last element becomes the first one.
 
 rrr : rra and rrb at the same time.
-
-
-
-
-
-1
-4
-5
-6
-3
-8
 */

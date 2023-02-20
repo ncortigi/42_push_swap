@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:19:56 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/03 15:54:12 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:37:39 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+long	ft_atoi_long(const char *nptr);
 int		ft_atoi_hex(char *str);
 int		ft_isalpha(int c);
 size_t	ft_strlen(const char *s);
