@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:13:25 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/20 16:07:02 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:29:04 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	main(int ac, char **av)
 {
+	t_stacks	*stack_a;
+	t_stacks	*stack_b;
+
 	if (ac < 2)
 		return (0);
 	if (!check_input(av))
@@ -21,11 +24,8 @@ int	main(int ac, char **av)
 		ft_printf("Error\n");
 		return (0);
 	}
-	else
-	{
-		ft_printf("lesgooo\n");
-		return (0);
-	}
+	stack_b = NULL;
+	stack_a = create(ac, av);
 }
 
 

@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 14:14:05 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/20 17:17:36 by ncortigi         ###   ########.fr       */
+/*   Created: 2023/02/20 17:29:23 by ncortigi          #+#    #+#             */
+/*   Updated: 2023/02/20 18:01:43 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "../libftt/libft.h"
-# include "../libftprintf/ft_printf.h"
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_stacks
+t_stacks	create(int ac, char **av)
 {
-	int	i;
-	struct s_stacks	*next;
-}	t_stacks;
+    t_stacks	*stack_a;
+	int		 num;
+	int		 i;
 
-int check_input(char **av);
-int number_cmp(char *s1, char *s2);
-int limits(char *str);
-
-#endif
+	stack_a = NULL;
+	num = 0;
+	i = 1;
+	while (i < ac)
+	{
+		num = ft_atoi(av[i]);
+		if (i = 1)
+			stack_a = funzione(num);
+		else
+			add_to_stack(&stack_a, funzione(num));
+		i++;
+	}
+}
