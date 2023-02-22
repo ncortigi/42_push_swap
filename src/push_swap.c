@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:13:25 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/21 16:25:47 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:56:29 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ int	calc_size(t_stacks *stack)
 		size++;
 	}
 	return (size);
+}
+
+void	sort(t_stacks **stack_a, t_stacks **stack_b, int size)
+{
+	if (size < 6)
+	{
+		int	max_i;
+
+		max_i = search_max_i(stack_a);
+		if (size != 4)
+			push(stack_a, stack_b, 'b');
+		push(stack_a, stack_b, 'b');
+		ft_tree_elem(stack_a);
+	}
 }
 
 int	main(int ac, char **av)
@@ -43,53 +57,9 @@ int	main(int ac, char **av)
 	size = calc_size(stack_a);
 	put_index(stack_a, size);
 	if (size == 2)
-		ft_two_elem();
+		ft_two_elem(&stack_a);
 	else if (size == 3)
-		ft_tree_elem();
+		ft_tree_elem(&stack_a);
 	else if (size > 3)
-		big_sort();
+		sort(&stack_a, &stack_b, size);
 }
-
-
-
-
-
-
-
-
-
-
-/*
-The goal is to sort in ascending order numbers into stack a. To do so you have the
-following operations at your disposal:
-
-sa (swap a): Swap the first 2 elements at the top of stack a.
-Do nothing if there is only one or no elements.
-
-sb (swap b): Swap the first 2 elements at the top of stack b.
-Do nothing if there is only one or no elements.
-
-ss : sa and sb at the same time.
-
-pa (push a): Take the first element at the top of b and put it at the top of a.
-Do nothing if b is empty.
-
-pb (push b): Take the first element at the top of a and put it at the top of b.
-Do nothing if a is empty.
-
-ra (rotate a): Shift up all elements of stack a by 1.
-The first element becomes the last one.
-
-rb (rotate b): Shift up all elements of stack b by 1.
-The first element becomes the last one.
-
-rr : ra and rb at the same time.
-
-rra (reverse rotate a): Shift down all elements of stack a by 1.
-The last element becomes the first one.
-
-rrb (reverse rotate b): Shift down all elements of stack b by 1.
-The last element becomes the first one.
-
-rrr : rra and rrb at the same time.
-*/

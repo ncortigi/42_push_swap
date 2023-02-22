@@ -6,11 +6,25 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:58:47 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/21 16:18:40 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:03:23 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_stacks	*take_bflast(t_stacks *stack)
+{
+	while (stack && stack->next && stack->next->next != NULL)
+		stack = stack->next;
+	return (stack);
+}
+
+t_stacks	*take_last(t_stacks *stack)
+{
+	while (stack && stack->next != NULL)
+		stack = stack->next;
+	return (stack);
+}
 
 int number_cmp(char *s1, char *s2)
 {
@@ -40,7 +54,7 @@ void	put_index(t_stacks *stack, int size)
 		max_i = NULL;
 		while (pointer)
 		{
-			if (pointer->value = -2147483648 && pointer->i == 0)
+			if (pointer->value == -2147483648 && pointer->i == 0)
 				pointer->i = 1;
 			if (pointer->value > num && pointer->i == 0)
 			{
@@ -52,6 +66,6 @@ void	put_index(t_stacks *stack, int size)
 				pointer = pointer->next;
 		}
 		if (max_i != NULL)
-			max_i->next = size;
+			max_i->i = size;
 	}
 }

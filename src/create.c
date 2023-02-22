@@ -6,18 +6,11 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:29:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/21 17:11:01 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:53:37 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_stacks	*take_last(t_stacks *stack)
-{
-	while (stack && stack->next != NULL)
-		stack = stack->next;
-	return (stack);
-}
 
 void	add_to_stack_bot(t_stacks **stack, t_stacks *new)
 {
@@ -59,7 +52,7 @@ t_stacks	*create(int ac, char **av)
 	while (i < ac)
 	{
 		num = ft_atoi(av[i]);
-		if (i = 1)
+		if (i == 1)
 			stack_a = new_stack(num);
 		else
 			add_to_stack_bot(&stack_a, new_stack(num));

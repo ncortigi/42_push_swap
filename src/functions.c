@@ -6,13 +6,13 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:35:02 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/21 17:20:51 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:11:22 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(t_stacks *stack, int which)
+void	swap(t_stacks *stack, int which)
 {
 	int app;
 
@@ -34,19 +34,19 @@ static void	swap(t_stacks *stack, int which)
 
 void	ss(t_stacks **stack_a, t_stacks **stack_b)
 {
-	swap(*stack_a, 'c');
-	swap(*stack_b, 'c');
+	swap(*stack_a, 'h');
+	swap(*stack_b, 'h');
 	ft_printf("ss\n");
 }
 
-static void	push(t_stacks **src, t_stacks **dest, int which)
+void	push(t_stacks **src, t_stacks **dst, int which)
 {
 	t_stacks *app;
 
 	if (*src == NULL)
 		return ;
 	app = (*src)->next;
-	*dest = *src;
+	*dst = *src;
 	*src = app;
 	if (which == 97)
 		ft_printf("pa\n");
@@ -56,7 +56,7 @@ static void	push(t_stacks **src, t_stacks **dest, int which)
 		return ;
 }
 
-static void	rotate(t_stacks **stack, int which)
+void	rotate(t_stacks **stack, int which)
 {
 	t_stacks	*app;
 	t_stacks	*last;
@@ -67,16 +67,16 @@ static void	rotate(t_stacks **stack, int which)
 	app->next = NULL;
 	last->next = app;
 	if (which == 97)
-		ft_printf("pa\n");
+		ft_printf("ra\n");
 	else if (which == 98)
-		ft_printf("pb\n");
+		ft_printf("rb\n");
 	else
 		return ;
 }
 
 void	rr(t_stacks **stack_a, t_stacks **stack_b)
 {
-	rotate(stack_a, 'c');
-	rotate(stack_b, 'c');
+	rotate(stack_a, 'h');
+	rotate(stack_b, 'h');
 	ft_printf("rr\n");
 }
