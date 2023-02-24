@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:35:02 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/22 17:11:22 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:03:55 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	push(t_stacks **src, t_stacks **dst, int which)
 	if (*src == NULL)
 		return ;
 	app = (*src)->next;
+	(*src)->next = *dst;
 	*dst = *src;
 	*src = app;
 	if (which == 97)

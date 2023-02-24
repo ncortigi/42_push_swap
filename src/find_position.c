@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   big_sort.c                                         :+:      :+:    :+:   */
+/*   find_position.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 17:21:32 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/24 17:31:03 by ncortigi         ###   ########.fr       */
+/*   Created: 2023/02/24 16:09:09 by ncortigi          #+#    #+#             */
+/*   Updated: 2023/02/24 16:14:53 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	big_sort(t_stacks **stack_a, t_stacks **stack_b)
-{}
+int find_position(t_stacks *stack, t_stacks *to_find)
+{
+    int i;
+
+    i = 0;
+    while (stack->i != to_find->i)
+    {
+        stack = stack->next;
+        i++;
+    }
+    return (i);
+}

@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:29:33 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/22 17:09:45 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:24:46 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,7 @@ void	ft_tree_elem(t_stacks **stack_a)
 
 void	ft_two_elem(t_stacks **stack_a)
 {
-	int sorted;
-
-	sorted = 1;
-	while ((*stack_a)->next != NULL)
-	{
-		if ((*stack_a)->value > (*stack_a)->next->value)
-			sorted = 0;
-		*stack_a = (*stack_a)->next;
-	}
-	if (sorted == 0)
+	if (!check_sort(*stack_a))
 		rotate(stack_a, 'a');
 	else
 		return ;
