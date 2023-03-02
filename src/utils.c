@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:58:47 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/22 17:03:23 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:38:13 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int limits(char *str)
 		return (1);
 	return (0);
 }
-
 
 void	put_index(t_stacks *stack, int size)
 {
