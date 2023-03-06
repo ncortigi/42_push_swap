@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:14:05 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/02 17:36:51 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/06 13:11:37 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		ft_two_elem(t_stacks **stack_a);
 int			search_max_i(t_stacks *stack);
 int 		find_position(t_stacks *stack, t_stacks *to_find);
 int			calc_size(t_stacks *stack);
+void		sort(t_stacks **stack_a, t_stacks **stack_b, int size);
 void		big_sort(t_stacks **stack_a, t_stacks **stack_b, int size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:21:32 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/03 18:05:59 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/06 13:12:23 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_stacks	*find_key(t_stacks *stack, int key)
 
 void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int size, t_stacks *num)
 {
-	ft_printf("%d", num->i);
+	//ft_printf("%d", num->i);
 	if (find_position(*stack_a, num) < (size / 2))
 	{
 		while ((*stack_a)->i != num->i)
@@ -55,19 +55,19 @@ void	big_sort(t_stacks **stack_a, t_stacks **stack_b, int size)
 	else
 		chunks = 8;
 	key = size / chunks;
-	//ft_printf("%d", key);
-	while (!check_sort(*stack_a))
-	{
+	//while (!check_sort(*stack_a))
+	//{
 		while ((chunks) != 1)
 		{
-			while (calc_size(*stack_b) < key)
+			while (calc_size(*stack_b) <= key)
 			{
 				make_clever_push_b(stack_a, stack_b, size, find_key(*stack_a, key));
 				size = calc_size(*stack_a);
 			}
 			size = calc_size(*stack_a);
 			chunks--;
-			key = size / chunks;
+			key = key + (size / chunks);
 		}
-	}
+		sort(stack_a, stack_b, size);
+	//}
 }
