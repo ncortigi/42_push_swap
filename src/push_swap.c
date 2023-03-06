@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:13:25 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/03 18:00:40 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:17:08 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	sort(t_stacks **stack_a, t_stacks **stack_b, int size)
 	flag = 0;
 	if (check_sort(*stack_a))
 		return ;
-	if (size < 51)
+	if (size < 65)
 	{
 		while (size > 3)
 		{
