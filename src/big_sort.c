@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:21:32 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/06 16:09:47 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:03:52 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,43 @@ t_stacks	*find_big(t_stacks *stack)
 	return (max);
 }
 
-t_stacks	*find_key(t_stacks *stack, int key)
+static void	calc_cost(t_stacks *stack_a, t_stacks *stack_b)
 {
-	t_stacks	*found;
+	int	maxpos_a;
+	int	maxpos_b;
 
-	found = stack;
-	while (stack)
+	maxpos_a = calc_size(stack_a);
+	maxpos_b = calc_size(stack_b);
+	while (stack_b)
 	{
-		if (found->i <= key)
-			break ;
-		stack = stack->next;
-		found = stack;
+		
 	}
-	return (found);
 }
 
-void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int size, t_stacks *num)
+void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int size)
 {
-	if (find_position(*stack_a, num) < (size / 2))
+	int i;
+	int j;
+
+	j = size;
+	while (j && size > 5)
 	{
-		while ((*stack_a)->i != num->i)
+		if ((*stack_a)->i > size / 2)
+			push(stack_a, stack_b, 'b');
+		else
 			rotate(stack_a, 'a');
+		j--;
 	}
-	else if (find_position(*stack_a, num) == 1)
-		swap(*stack_a, 'a');
-	else
+	i = 0;
+	size = calc_size(*stack_a);
+	if (size <= 3)
+		return ;
+	while (i < (size - 3))
 	{
-		while ((*stack_a)->i != num->i)
-			r_rotate(stack_a, 'a');
+		push(stack_a, stack_b, 'b');
+		i++;
 	}
-	push(stack_a, stack_b, 'b');
+	ft_tree_elem(stack_a);
 }
 
 void	clever_push_a(t_stacks **stack_a, t_stacks **stack_b, t_stacks *max, int size)
@@ -77,13 +84,22 @@ void	clever_push_a(t_stacks **stack_a, t_stacks **stack_b, t_stacks *max, int si
 
 void	big_sort(t_stacks **stack_a, t_stacks **stack_b, int size)
 {
+	make_clever_push_b(stack_a, stack_b, size);
+	while (!check_sort(*stack_a))
+	{
+		put_pos(*stack_a, *stack_b);
+		put_target_pos(*stack_a, *stack_b);
+		calc_cost(*stack_a, *stack_b);
+	}
+	
+	/*
 	int	key;
 	int	chunks;
 
 	if (size <= 100)
 		chunks = 4;
 	else
-		chunks = 8;
+		chunks = 12;
 	key = size / chunks;
 	while ((chunks) != 1)
 	{
@@ -99,4 +115,5 @@ void	big_sort(t_stacks **stack_a, t_stacks **stack_b, int size)
 	sort(stack_a, stack_b, size);
 	while ((*stack_a)->i != 0)
 		clever_push_a(stack_a, stack_b, find_big(*stack_b), calc_size(*stack_b));
+	*/
 }
