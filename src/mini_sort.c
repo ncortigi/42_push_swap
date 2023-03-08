@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:29:33 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/24 15:24:46 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:44:22 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	check_sort(t_stacks *stack)
 {
+	if (!stack)
+		return (1);
 	while (stack->next != NULL)
 	{
 		if (stack->value > stack->next->value)

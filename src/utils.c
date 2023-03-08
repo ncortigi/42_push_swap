@@ -5,66 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 11:58:47 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/28 16:38:13 by ncortigi         ###   ########.fr       */
+/*   Created: 2023/03/08 12:07:04 by ncortigi          #+#    #+#             */
+/*   Updated: 2023/03/08 14:30:17 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stacks	*take_bflast(t_stacks *stack)
+int	my_abs(int num)
 {
-	while (stack && stack->next && stack->next->next != NULL)
-		stack = stack->next;
-	return (stack);
+    if (num < 0)
+        num *= -1;
+    return (num);
 }
 
-t_stacks	*take_last(t_stacks *stack)
+void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int size)
 {
-	while (stack && stack->next != NULL)
-		stack = stack->next;
-	return (stack);
-}
+	int i;
+	int j;
 
-int number_cmp(char *s1, char *s2)
-{
-	if (ft_atoi(s1) == ft_atoi(s2))
-		return (1);
-	return (0);
-}
-
-int limits(char *str)
-{
-	if (ft_atoi_long(str) > 2147483647 || ft_atoi_long(str) < -2147483648)
-		return (1);
-	return (0);
-}
-
-void	put_index(t_stacks *stack, int size)
-{
-	t_stacks	*max_i;
-	t_stacks	*pointer;
-	int   num;
-
-	while (--size > 0)
+	j = size;
+	while (j && size > 5)
 	{
-		pointer = stack;
-		num = -2147483648;
-		max_i = NULL;
-		while (pointer)
-		{
-			if (pointer->value == -2147483648 && pointer->i == 0)
-				pointer->i = 1;
-			if (pointer->value > num && pointer->i == 0)
-			{
-				num = pointer->value;
-				max_i = pointer;
-				pointer = stack;
-			}
-			else
-				pointer = pointer->next;
-		}
-		if (max_i != NULL)
-			max_i->i = size;
+		if ((*stack_a)->i > size / 2)
+			push(stack_a, stack_b, 'b');
+		else
+			rotate(stack_a, 'a');
+		j--;
 	}
+	i = 0;
+	size = calc_size(*stack_a);
+	if (size <= 3)
+		return ;
+	while (i < (size - 3))
+	{
+		push(stack_a, stack_b, 'b');
+		i++;
+	}
+	ft_tree_elem(stack_a);
 }

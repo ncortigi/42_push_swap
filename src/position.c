@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:09:09 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/07 17:46:07 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:49:39 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	put_pos(t_stacks *stack_a, t_stacks *stack_b)
 		i++;
 	}
 	if (stack_b)
-		put_positions(stack_b, NULL);
+		put_pos(stack_b, NULL);
 }
 
 static void	targ_pos_higher_i(t_stacks *stack_a, t_stacks *stack_b, int min_i)
@@ -80,6 +80,7 @@ void	put_target_pos(t_stacks *stack_a, t_stacks *stack_b)
 		{
 			if (stack_a->i > max_i)
 				max_i = stack_a->i;
+			//ft_printf("st_a_i%d\n", stack_a->i);
 			if (diff > stack_a->i - stack_b->i && stack_a->i > stack_b->i)
 				diff = target_pos(stack_a, stack_b);
 			stack_a = stack_a->next;

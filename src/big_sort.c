@@ -6,25 +6,11 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:21:32 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/07 18:03:52 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:00:23 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_stacks	*find_big(t_stacks *stack)
-{
-	t_stacks	*max;
-
-	max = stack;
-	while (stack)
-	{
-		if (max->i < stack->i)
-			max = stack;
-		stack = stack->next;
-	}
-	return (max);
-}
 
 static void	calc_cost(t_stacks *stack_a, t_stacks *stack_b)
 {
@@ -35,85 +21,121 @@ static void	calc_cost(t_stacks *stack_a, t_stacks *stack_b)
 	maxpos_b = calc_size(stack_b);
 	while (stack_b)
 	{
-		
-	}
-}
-
-void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int size)
-{
-	int i;
-	int j;
-
-	j = size;
-	while (j && size > 5)
-	{
-		if ((*stack_a)->i > size / 2)
-			push(stack_a, stack_b, 'b');
+		if (maxpos_b - stack_b->pos < stack_b->pos)
+		{
+			stack_b->costb = maxpos_b - stack_b->pos;
+			stack_b->costb *= -1;
+		}
 		else
-			rotate(stack_a, 'a');
-		j--;
+			stack_b->costb = stack_b->pos;
+		ft_printf("%d", stack_b->pos);
+		ft_printf("cost_b%d ", stack_b->costb);
+		if (maxpos_a - stack_b->target_pos < stack_b->target_pos)
+		{
+			stack_b->costa = maxpos_a - stack_b->target_pos;
+			stack_b->costa *= -1;
+		}
+		else
+			stack_b->costa = stack_b->target_pos;
+		ft_printf("%d", stack_b->target_pos);
+		ft_printf("cost_a%d\n", stack_b->costa);
+		stack_b = stack_b->next;
 	}
-	i = 0;
-	size = calc_size(*stack_a);
-	if (size <= 3)
-		return ;
-	while (i < (size - 3))
-	{
-		push(stack_a, stack_b, 'b');
-		i++;
-	}
-	ft_tree_elem(stack_a);
 }
 
-void	clever_push_a(t_stacks **stack_a, t_stacks **stack_b, t_stacks *max, int size)
+static int	calc_steps(int cost_a, int cost_b)
 {
-	if (find_position(*stack_b, max) < (size / 2))
+	int	steps;
+
+	steps = 0;
+	while (cost_a != 0 || cost_b != 0)
 	{
-		while ((*stack_b)->i != max->i)
-			rotate(stack_b, 'b');
+		if (cost_a > 0 && cost_b > 0)
+		{
+			steps++;
+			cost_a--;
+			cost_b--;
+		}
+		else if (cost_a < 0 && cost_b < 0)
+		{
+			steps++;
+			cost_a++;
+			cost_b++;
+		}
+		else
+		{
+			steps += (my_abs(cost_a) + my_abs(cost_b));
+			cost_a = 0;
+			cost_b = 0;
+		}
 	}
-	else if (find_position(*stack_b, max) == 1)
-		swap(*stack_b, 'b');
-	else
-	{
-		while ((*stack_b)->i != max->i)
-			r_rotate(stack_b, 'b');
-	}
-	push(stack_b, stack_a, 'a');
+	return (steps);
 }
 
+static void	set_clever_push_a(t_stacks **stack_a, t_stacks **stack_b)
+{
+	t_stacks	*num;
+	int			cost_a_min;
+	int			cost_b_min;
+	int			steps;
+
+	num = *stack_b;
+	steps = 2147483647;
+	while (num)
+	{
+		ft_printf("ca%d...", num->costa);
+		ft_printf("cb%d\n", num->costb);
+		if (calc_steps(num->costa, num->costb) < steps)
+		{
+			cost_a_min = num->costa;
+			cost_b_min = num->costb;
+			steps = calc_steps(num->costa, num->costb);
+			ft_printf("%d...", steps);
+		}
+		num = num->next;
+	}
+	ft_printf("%d...%d\n", cost_a_min, cost_b_min);
+	choose_best_move(stack_a, stack_b, cost_a_min, cost_b_min);
+}
+/*
+static void	last_sort(t_stacks **stack_a)
+{
+	t_stacks	*num;
+	int			size;
+	int			min_pos_i;
+
+	put_pos(*stack_a, NULL);
+	num = *stack_a;
+	min_pos_i = 0;
+	while (num)
+	{
+		if (num->i == 1)
+		{
+			min_pos_i = num->pos;
+			break ;
+		}
+		num = num->next;
+	}
+	size = calc_size(*stack_a);
+	if (size - min_pos_i < min_pos_i)
+	{
+		min_pos_i = size - min_pos_i;
+		min_pos_i *= -1;
+	}
+	choose_best_move(stack_a, NULL, min_pos_i, 0);
+}
+*/
 void	big_sort(t_stacks **stack_a, t_stacks **stack_b, int size)
 {
 	make_clever_push_b(stack_a, stack_b, size);
-	while (!check_sort(*stack_a))
+	while (*stack_b)
 	{
 		put_pos(*stack_a, *stack_b);
 		put_target_pos(*stack_a, *stack_b);
 		calc_cost(*stack_a, *stack_b);
+		set_clever_push_a(stack_a, stack_b);
+		push(stack_b, stack_a, 'a');
+		//if (*stack_b == NULL)
+		//	last_sort(stack_a);
 	}
-	
-	/*
-	int	key;
-	int	chunks;
-
-	if (size <= 100)
-		chunks = 4;
-	else
-		chunks = 12;
-	key = size / chunks;
-	while ((chunks) != 1)
-	{
-		while (calc_size(*stack_b) <= key)
-		{
-			make_clever_push_b(stack_a, stack_b, size, find_key(*stack_a, key));
-			size = calc_size(*stack_a);
-		}
-		size = calc_size(*stack_a);
-		chunks--;
-		key = key + (size / chunks);
-	}
-	sort(stack_a, stack_b, size);
-	while ((*stack_a)->i != 0)
-		clever_push_a(stack_a, stack_b, find_big(*stack_b), calc_size(*stack_b));
-	*/
 }
