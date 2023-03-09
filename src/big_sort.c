@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:21:32 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/08 18:00:23 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:38:08 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	calc_cost(t_stacks *stack_a, t_stacks *stack_b)
 {
-	int	maxpos_a;
-	int	maxpos_b;
+	size_t	maxpos_a;
+	size_t	maxpos_b;
 
 	maxpos_a = calc_size(stack_a);
 	maxpos_b = calc_size(stack_b);
@@ -28,8 +28,8 @@ static void	calc_cost(t_stacks *stack_a, t_stacks *stack_b)
 		}
 		else
 			stack_b->costb = stack_b->pos;
-		ft_printf("%d", stack_b->pos);
-		ft_printf("cost_b%d ", stack_b->costb);
+		//ft_printf("%d", stack_b->pos);
+		//ft_printf("cost_b%d ", stack_b->costb);
 		if (maxpos_a - stack_b->target_pos < stack_b->target_pos)
 		{
 			stack_b->costa = maxpos_a - stack_b->target_pos;
@@ -37,15 +37,15 @@ static void	calc_cost(t_stacks *stack_a, t_stacks *stack_b)
 		}
 		else
 			stack_b->costa = stack_b->target_pos;
-		ft_printf("%d", stack_b->target_pos);
-		ft_printf("cost_a%d\n", stack_b->costa);
+		//ft_printf("%d", stack_b->target_pos);
+		//ft_printf("cost_a%d\n", stack_b->costa);
 		stack_b = stack_b->next;
 	}
 }
 
-static int	calc_steps(int cost_a, int cost_b)
+static int	calc_steps(long int cost_a, long int cost_b)
 {
-	int	steps;
+	long int	steps;
 
 	steps = 0;
 	while (cost_a != 0 || cost_b != 0)
@@ -75,16 +75,16 @@ static int	calc_steps(int cost_a, int cost_b)
 static void	set_clever_push_a(t_stacks **stack_a, t_stacks **stack_b)
 {
 	t_stacks	*num;
-	int			cost_a_min;
-	int			cost_b_min;
-	int			steps;
+	long int	cost_a_min;
+	long int	cost_b_min;
+	long int	steps;
 
 	num = *stack_b;
 	steps = 2147483647;
 	while (num)
 	{
-		ft_printf("ca%d...", num->costa);
-		ft_printf("cb%d\n", num->costb);
+		//ft_printf("ca%d...", num->costa);
+		//ft_printf("cb%d\n", num->costb);
 		if (calc_steps(num->costa, num->costb) < steps)
 		{
 			cost_a_min = num->costa;
@@ -94,7 +94,7 @@ static void	set_clever_push_a(t_stacks **stack_a, t_stacks **stack_b)
 		}
 		num = num->next;
 	}
-	ft_printf("%d...%d\n", cost_a_min, cost_b_min);
+	//ft_printf("%d...%d\n", cost_a_min, cost_b_min);
 	choose_best_move(stack_a, stack_b, cost_a_min, cost_b_min);
 }
 /*
@@ -125,9 +125,9 @@ static void	last_sort(t_stacks **stack_a)
 	choose_best_move(stack_a, NULL, min_pos_i, 0);
 }
 */
-void	big_sort(t_stacks **stack_a, t_stacks **stack_b, int size)
+void	big_sort(t_stacks **stack_a, t_stacks **stack_b)
 {
-	make_clever_push_b(stack_a, stack_b, size);
+	make_clever_push_b(stack_a, stack_b);
 	while (*stack_b)
 	{
 		put_pos(*stack_a, *stack_b);

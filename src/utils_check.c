@@ -6,22 +6,17 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:58:47 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/08 17:47:20 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:18:35 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stacks	*take_bflast(t_stacks *stack)
-{
-	while (stack && stack->next && stack->next->next != NULL)
-		stack = stack->next;
-	return (stack);
-}
-
 t_stacks	*take_last(t_stacks *stack)
 {
-	while (stack && stack->next != NULL)
+	if (stack == NULL)
+		return (NULL);
+	while (stack->next)
 		stack = stack->next;
 	return (stack);
 }
@@ -46,7 +41,6 @@ void	put_index(t_stacks *stack, int size)
 	t_stacks	*pointer;
 	int   num;
 
-	size++;
 	while (--size > 0)
 	{
 		pointer = stack;

@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:13:25 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/08 14:25:01 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:43:18 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int	calc_size(t_stacks *stack)
 {
 	int	size;
 
-	size = 0;
-	while (stack)
+	if (stack == NULL)
+		return (0);
+	size = 1;
+	while (stack->next)
 	{
 		stack = stack->next;
 		size++;
@@ -75,7 +77,7 @@ void	sort(t_stacks **stack_a, t_stacks **stack_b, int size)
 			push(stack_b, stack_a, 'a');
 	}
 	else
-		big_sort(stack_a, stack_b, size);
+		big_sort(stack_a, stack_b);
 }
 
 int	main(int ac, char **av)

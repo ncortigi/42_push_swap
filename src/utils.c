@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:07:04 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/08 14:30:17 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:48:51 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int	my_abs(int num)
     return (num);
 }
 
-void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int size)
+void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b)
 {
-	int i;
-	int j;
+	unsigned int 	i;
+	unsigned int 	j;
+	unsigned int	size;
 
+	size = calc_size(*stack_a);
 	j = size;
 	while (j && size > 5)
 	{
@@ -43,4 +45,10 @@ void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int size)
 		i++;
 	}
 	ft_tree_elem(stack_a);
+}
+
+void	put_first(t_stacks **stack, t_stacks *new)
+{
+	new->next = *stack;
+	(*stack) = new;
 }
