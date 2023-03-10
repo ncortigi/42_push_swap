@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:29:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/08 17:02:41 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:48:22 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	add_to_stack_bot(t_stacks **stack, t_stacks *new)
 {
 	t_stacks	*last;
 
-	if (!new)
+	if (!new || !stack)
 		return ;
 	if (*stack == NULL)
 		*stack = new;
@@ -31,15 +31,15 @@ t_stacks	*new_stack(int num)
 {
 	t_stacks	*stack;
 
-	stack = (t_stacks *)malloc(sizeof(t_stacks) * num);
+	stack = malloc(sizeof(*stack));
 	if (!stack)
 		return (NULL);
 	stack->value = num;
 	stack->i = 0;
 	stack->costa = -1;
 	stack->costb = -1;
-	stack->pos = 0;
-	stack->target_pos = 0;
+	stack->pos = -1;
+	stack->target_pos = -1;
 	stack->next = NULL;
 	return (stack);
 }

@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:29:33 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/09 15:25:16 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:02:03 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	check_sort(t_stacks *stack)
 	return (1);
 }
 
-unsigned int	search_max_i(t_stacks *stack)
+int	search_max_i(t_stacks *stack)
 {
-	unsigned int	i;
+	int	i;
 
 	i = stack->i;
 	while (stack)
@@ -41,7 +41,7 @@ unsigned int	search_max_i(t_stacks *stack)
 
 void	ft_tree_elem(t_stacks **stack_a)
 {
-	unsigned int	max;
+	int	max;
 
 	if (check_sort(*stack_a))
 		return ;

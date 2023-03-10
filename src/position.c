@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:09:09 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/09 17:22:51 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:26:00 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,100 @@ int	find_position(t_stacks *stack, t_stacks *to_find)
 	return (i);
 }
 
-void	put_pos(t_stacks *stack_a, t_stacks *stack_b)
+void	put_pos(t_stacks **stack)
 {
-	unsigned int 	i;
-	unsigned int	size;
+	t_stacks	*app;
+	int 		i;
 
 	i = 0;
-	size = (unsigned int)calc_size(stack_a);
-	while (i < size)
+	app = *stack;
+	while (app)
 	{
-		stack_a->pos = i;
-		stack_a = stack_a->next;
+		app->pos = i;
+		app = app->next;
 		i++;
 	}
-	if (stack_b)
-		put_pos(stack_b, NULL);
 }
 
+int	targ_pos(t_stacks **stack_a, int b_i, int pos, int max)
+{
+	t_stacks	*app;
+
+	app = *stack_a;
+	while (app)
+	{
+		if (app->i < max && app->i > b_i)
+		{
+			max = app->i;
+			pos = app->pos;
+		}
+		app = app->next;
+	}
+	if (max != 2147483647)
+		return (pos);
+	app = *stack_a;
+	while (app)
+	{
+		if (app->i < max)
+		{
+			max = app->i;
+			pos = app->pos;
+		}
+		app = app->next;
+	}
+	ft_printf("f:%d", pos);
+	return (pos);
+}
+
+void	put_target_pos(t_stacks **stack_a, t_stacks **stack_b)
+{
+	t_stacks	*app;
+	int			i;
+
+	app = *stack_b;
+	put_pos(stack_a);
+	put_pos(stack_b);
+	i = 0;
+	while (app)
+	{
+		i = targ_pos(stack_a, app->i, i, 2147483647);
+		app->target_pos = i;
+		app = app->next;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 static void	targ_pos_higher_i(t_stacks *stack_a, t_stacks *stack_b, unsigned int min_i)
 {
 	while (stack_a)
@@ -93,3 +170,4 @@ void	put_target_pos(t_stacks *stack_a, t_stacks *stack_b)
 		stack_b = stack_b->next;
 	}
 }
+*/

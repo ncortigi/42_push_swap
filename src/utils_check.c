@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:58:47 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/09 17:18:35 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:14:48 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,57 @@ int limits(char *str)
 
 void	put_index(t_stacks *stack, int size)
 {
-	t_stacks	*max_i;
-	t_stacks	*pointer;
-	int   num;
+	int		nb;
+	t_stacks	*app;
+	t_stacks	*high;
 
-	while (--size > 0)
+	while (size > 0)
 	{
-		pointer = stack;
-		num = -2147483648;
-		max_i = NULL;
-		while (pointer)
+		nb = -2147483648;
+		app = stack;
+		high = NULL;
+		while (app)
 		{
-			if (pointer->value == -2147483648 && pointer->i == 0)
-				pointer->i = 1;
-			if (pointer->value > num && pointer->i == 0)
+			if (app->value == -2147483648 && app->i == 0)
+				app->i = 1;
+			if (app->value > nb && app->i == 0)
 			{
-				num = pointer->value;
-				max_i = pointer;
-				pointer = stack;
+				nb = app->value;
+				high = app;
 			}
-			else
-				pointer = pointer->next;
+			app = app->next;
 		}
-		if (max_i != NULL)
-			max_i->i = size;
+		if (high)
+			high->i = size;
+		size--;
 	}
 }
+/*
+static int	okay(t_stacks *stack, int value)
+{
+	int	num;
+
+	num = 0;
+	while(stack)
+	{
+		if (stack->value > value)
+			num++;
+		stack = stack->next;
+	}
+	return (num);
+}
+
+void	put_index(t_stacks *stack, int size)
+{
+	int				ok;
+	t_stacks		*first;
+
+	first = stack;
+	while (stack)
+	{
+		ok = okay(first, stack->value);
+		stack->i = size - ok;
+		stack = stack->next;
+	}
+}
+*/

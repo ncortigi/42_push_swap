@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:35:02 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/09 17:19:29 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:37:07 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	swap(t_stacks **stack, int which)
 	t_stacks	*app;
 	t_stacks	*third;
 
+	if (!stack)
+		return ;
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
 	app = *stack;

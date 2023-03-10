@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:14:05 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/09 17:18:05 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:29:29 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 typedef struct s_stacks
 {
 	int				value;
-	unsigned int	i;
-	unsigned int	pos;
-	unsigned int	target_pos;
-	long int		costa;
-	long int 		costb;
+	int				i;
+	int				pos;
+	int				target_pos;
+	int				costa;
+	int 			costb;
 	struct s_stacks	*next;
 }	t_stacks;
 
@@ -47,15 +47,15 @@ void			rrr(t_stacks **stack_a, t_stacks **stack_b);
 void			r_rotate(t_stacks **stack, int which);
 void			ft_tree_elem(t_stacks **stack_a);
 void			ft_two_elem(t_stacks **stack_a);
-unsigned int	search_max_i(t_stacks *stack);
+int				search_max_i(t_stacks *stack);
 int 			find_position(t_stacks *stack, t_stacks *to_find);
-void			put_pos(t_stacks *stack_a, t_stacks *stack_b);
-void			put_target_pos(t_stacks *stack_a, t_stacks *stack_b);
+void			put_pos(t_stacks **stack_a);
+void			put_target_pos(t_stacks **stack_a, t_stacks **stack_b);
 int				calc_size(t_stacks *stack);
 int				my_abs(int num);
-void			make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b);
+void			make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int size);
 void			sort(t_stacks **stack_a, t_stacks **stack_b, int size);
 void			big_sort(t_stacks **stack_a, t_stacks **stack_b);
-void			choose_best_move(t_stacks **stack_a, t_stacks **stack_b, long int cost_a, long int cost_b);
+void			choose_best_move(t_stacks **stack_a, t_stacks **stack_b, int cost_a, int cost_b);
 
 #endif
