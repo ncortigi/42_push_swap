@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:13:40 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/10 17:13:23 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:26:42 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ void	ft_do_rotate(t_stacks	**stack, int *cost, char c)
 void	choose_best_move(t_stacks **stack_a, t_stacks **stack_b, \
 	int cost_a, int cost_b)
 {
-	ft_printf("c_a%d...c_b%d\n", cost_a, cost_b);
+	//ft_printf("c_a%d...c_b%d\n", cost_a, cost_b);
 	while (cost_a > 0 && cost_b > 0)
 	{
-		ft_printf("pronti\n");
 		cost_a--;
 		cost_b--;
 		rr(stack_a, stack_b);

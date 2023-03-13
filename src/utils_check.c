@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:58:47 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/10 16:14:48 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:08:09 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,3 @@ void	put_index(t_stacks *stack, int size)
 		size--;
 	}
 }
-/*
-static int	okay(t_stacks *stack, int value)
-{
-	int	num;
-
-	num = 0;
-	while(stack)
-	{
-		if (stack->value > value)
-			num++;
-		stack = stack->next;
-	}
-	return (num);
-}
-
-void	put_index(t_stacks *stack, int size)
-{
-	int				ok;
-	t_stacks		*first;
-
-	first = stack;
-	while (stack)
-	{
-		ok = okay(first, stack->value);
-		stack->i = size - ok;
-		stack = stack->next;
-	}
-}
-*/

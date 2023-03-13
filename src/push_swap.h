@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:14:05 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/10 16:29:29 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:24:09 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void			put_pos(t_stacks **stack_a);
 void			put_target_pos(t_stacks **stack_a, t_stacks **stack_b);
 int				calc_size(t_stacks *stack);
 int				my_abs(int num);
-void			make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int size);
 void			sort(t_stacks **stack_a, t_stacks **stack_b, int size);
 void			big_sort(t_stacks **stack_a, t_stacks **stack_b);
 void			choose_best_move(t_stacks **stack_a, t_stacks **stack_b, int cost_a, int cost_b);

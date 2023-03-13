@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:09:09 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/10 17:26:00 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:47:53 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,49 +40,49 @@ void	put_pos(t_stacks **stack)
 	}
 }
 
-int	targ_pos(t_stacks **stack_a, int b_i, int pos, int max)
+static int	targ_pos(t_stacks **stack_a, int b_i, int targ_i, int pos_targ)
 {
 	t_stacks	*app;
 
 	app = *stack_a;
 	while (app)
 	{
-		if (app->i < max && app->i > b_i)
+		if (app->i < targ_i && app->i > b_i)
 		{
-			max = app->i;
-			pos = app->pos;
+			targ_i = app->i;
+			pos_targ = app->pos;
 		}
 		app = app->next;
 	}
-	if (max != 2147483647)
-		return (pos);
+	if (targ_i != 2147483647)
+		return (pos_targ);
 	app = *stack_a;
 	while (app)
 	{
-		if (app->i < max)
+		if (app->i < targ_i)
 		{
-			max = app->i;
-			pos = app->pos;
+			targ_i = app->i;
+			pos_targ = app->pos;
 		}
 		app = app->next;
 	}
-	ft_printf("f:%d", pos);
-	return (pos);
+	//ft_printf("f:%d", pos_targ);
+	return (pos_targ);
 }
 
 void	put_target_pos(t_stacks **stack_a, t_stacks **stack_b)
 {
 	t_stacks	*app;
-	int			i;
+	int			target_pos;
 
 	app = *stack_b;
 	put_pos(stack_a);
 	put_pos(stack_b);
-	i = 0;
+	target_pos = 0;
 	while (app)
 	{
-		i = targ_pos(stack_a, app->i, i, 2147483647);
-		app->target_pos = i;
+		target_pos = targ_pos(stack_a, app->i, 2147483647, target_pos);
+		app->target_pos = target_pos;
 		app = app->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:13:25 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/10 16:05:01 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:20:56 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	calc_size(t_stacks *stack)
 
 	if (stack == NULL)
 		return (0);
-	size = 1;
+	size = 0;
 	while (stack)
 	{
 		stack = stack->next;
