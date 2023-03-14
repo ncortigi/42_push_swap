@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:58:47 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/13 14:08:09 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:05:14 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 t_stacks	*take_last(t_stacks *stack)
 {
-	if (stack == NULL)
-		return (NULL);
-	while (stack->next)
+	while (stack && stack->next)
 		stack = stack->next;
 	return (stack);
 }

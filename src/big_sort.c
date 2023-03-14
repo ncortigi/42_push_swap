@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:21:32 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/13 16:25:38 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:51:26 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ void	clever_push_a(t_stacks **stack_a, t_stacks **stack_b)
 	best = 2147483647;
 	while (num)
 	{
-		//ft_printf("ca%d...", num->costa);
-		//ft_printf("cb%d\n", num->costb);
-		if (my_abs(best) > my_abs(num->costa) + my_abs(num->costb))
+		ft_printf("ca%d...", num->costa);
+		ft_printf("cb%d\n", num->costb);
+		if (my_abs(num->costa) + my_abs(num->costb) < my_abs(best))
 		{
 			best = my_abs(num->costa) + my_abs(num->costb);
 			cost_a_min = num->costa;
 			cost_b_min = num->costb;
-			//ft_printf("hhhh\n");
 		}
 		num = num->next;
 	}
@@ -87,12 +86,9 @@ void	calc_cost(t_stacks **stack_a, t_stacks **stack_b)
 
 void	big_sort(t_stacks **stack_a, t_stacks **stack_b)
 {
-	int	c;
-	
-	c = 10;
 	make_clever_push_b(stack_a, stack_b);
 	ft_tree_elem(stack_a);
-	while (c > 0)
+	while (*stack_b)
 	{
 		put_target_pos(stack_a, stack_b);
 		//ft_printf("gg\n");
@@ -100,6 +96,5 @@ void	big_sort(t_stacks **stack_a, t_stacks **stack_b)
 		clever_push_a(stack_a, stack_b);
 		//if (*stack_b == NULL)
 		//	last_sort(stack_a);
-		c--;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:29:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/10 16:48:22 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:04:16 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	add_to_stack_bot(t_stacks **stack, t_stacks *new)
 {
 	t_stacks	*last;
 
-	if (!new || !stack)
-		return ;
 	if (*stack == NULL)
 		*stack = new;
 	else
