@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:29:23 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/14 17:04:16 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:45:19 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_stacks	*new_stack(int num)
 t_stacks	*create(int ac, char **av)
 {
     t_stacks	*stack_a;
-	int		 num;
-	int		 i;
+	int			num;
+	int			i;
 
 	stack_a = NULL;
 	num = 0;

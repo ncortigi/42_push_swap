@@ -6,13 +6,13 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:13:40 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/14 16:56:30 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:34:58 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_choose_rotate(t_stacks	**stack, int *cost, char which)
+static void	ft_choose_rotate(t_stacks	**stack, int *cost, char which)
 {
 	while (*cost != 0)
 	{

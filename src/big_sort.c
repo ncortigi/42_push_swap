@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:21:32 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/14 16:51:26 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:09:57 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	clever_push_a(t_stacks **stack_a, t_stacks **stack_b)
 	best = 2147483647;
 	while (num)
 	{
-		ft_printf("ca%d...", num->costa);
-		ft_printf("cb%d\n", num->costb);
+		//ft_printf("ca%d...", num->costa);
+		//ft_printf("cb%d\n", num->costb);
 		if (my_abs(num->costa) + my_abs(num->costb) < my_abs(best))
 		{
 			best = my_abs(num->costa) + my_abs(num->costb);
@@ -35,30 +35,6 @@ void	clever_push_a(t_stacks **stack_a, t_stacks **stack_b)
 	}
 	//ft_printf("%d...%d\n", cost_a_min, cost_b_min);
 	choose_best_move(stack_a, stack_b, cost_a_min, cost_b_min);
-}
-
-static void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b)
-{
-	int i;
-	int	size;
-	int	count;
-
-	count = 0;
-	size = calc_size(*stack_a);
-	i = 0;
-	while (size > 6 && i < size && count < size / 2)
-	{
-		if ((*stack_a)->i <= size / 2)
-		{
-			push(stack_a, stack_b, 'b');
-			count++;
-		}
-		else
-			rotate(stack_a, 'a');
-		i++;
-	}
-	while (calc_size(*stack_a) != 3)
-		push(stack_a, stack_b, 'b');
 }
 
 void	calc_cost(t_stacks **stack_a, t_stacks **stack_b)
@@ -75,19 +51,47 @@ void	calc_cost(t_stacks **stack_a, t_stacks **stack_b)
 	while (app_b)
 	{
 		app_b->costb = app_b->pos;
-		if (app_b->pos > (size_b / 2))
+		if (app_b->pos > size_b / 2)
 			app_b->costb = -(size_b - app_b->pos);
 		app_b->costa = app_b->target_pos;
-		if (app_b->target_pos > (size_a / 2))
+		if (app_b->target_pos > size_a / 2)
 			app_b->costa = -(size_a - app_b->target_pos);
 		app_b = app_b->next;
 	}
 }
 
+static void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int *lis)
+{
+	int			i;
+	t_stacks	*last;
+
+	last = take_last(*stack_a);
+	i = 0;
+	while (*stack_a && lis[i] != last->i)
+	{
+		if ((*stack_a)->i == lis[i])
+		{
+			rotate(stack_a, 'a');
+			i++;
+		}
+		else
+			push(stack_a, stack_b, 'b');
+		*stack_a = (*stack_a)->next;
+	}
+}
+
 void	big_sort(t_stacks **stack_a, t_stacks **stack_b)
 {
-	make_clever_push_b(stack_a, stack_b);
+	int	*arr_seq;
+	int	*copy;
+	int	size;
+
+	size = calc_size(*stack_a);
+	copy = copy_list(stack_a, size);
+	arr_seq = find_sequence(copy, size, 0, 0);
+	make_clever_push_b(stack_a, stack_b, arr_seq);
 	ft_tree_elem(stack_a);
+	//cambiato fino qui
 	while (*stack_b)
 	{
 		put_target_pos(stack_a, stack_b);

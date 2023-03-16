@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:58:47 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/14 17:05:14 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:13:20 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 t_stacks	*take_last(t_stacks *stack)
 {
 	while (stack && stack->next)
+		stack = stack->next;
+	return (stack);
+}
+
+t_stacks	*take_before_last(t_stacks *stack)
+{
+	while (stack && stack->next && stack->next->next)
 		stack = stack->next;
 	return (stack);
 }
@@ -39,7 +46,7 @@ void	put_index(t_stacks *stack, int size)
 	t_stacks	*app;
 	t_stacks	*high;
 
-	while (size > 0)
+	while (--size > 0)
 	{
 		nb = -2147483648;
 		app = stack;
@@ -57,6 +64,5 @@ void	put_index(t_stacks *stack, int size)
 		}
 		if (high)
 			high->i = size;
-		size--;
 	}
 }

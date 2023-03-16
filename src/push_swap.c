@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:13:25 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/14 12:10:38 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:36:15 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,12 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	stack_a = create(ac, av);
 	size = calc_size(stack_a);
-	put_index(stack_a, size);
+	put_index(stack_a, size + 1);
 	if (size == 2)
 		ft_two_elem(&stack_a);
 	else if (size == 3)
 		ft_tree_elem(&stack_a);
 	else if (size > 3)
 		sort(&stack_a, &stack_b, size);
-	return (0);
+	free_(&stack_a, &stack_b);
 }
