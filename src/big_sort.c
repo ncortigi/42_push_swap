@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:21:32 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/16 17:09:57 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:20:17 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,13 @@ static void	make_clever_push_b(t_stacks **stack_a, t_stacks **stack_b, int *lis)
 
 	last = take_last(*stack_a);
 	i = 0;
-	while (*stack_a && lis[i] != last->i)
+	while (*stack_a && lis[i])
 	{
+		if ((*stack_a)->i == last->i && lis[i] != last->i)
+		{
+			push(stack_a, stack_b, 'b');
+			return ;
+		}
 		if ((*stack_a)->i == lis[i])
 		{
 			rotate(stack_a, 'a');
@@ -85,13 +90,21 @@ void	big_sort(t_stacks **stack_a, t_stacks **stack_b)
 	int	*arr_seq;
 	int	*copy;
 	int	size;
+	int	i;
 
 	size = calc_size(*stack_a);
-	copy = copy_list(stack_a, size);
+	copy = copy_list(*stack_a, size);
 	arr_seq = find_sequence(copy, size, 0, 0);
+	i = 0;
+	while (arr_seq[i])
+	{
+		ft_printf("%d\n", arr_seq[i]);
+		i++;
+	}
+	ft_printf("gg\n");
 	make_clever_push_b(stack_a, stack_b, arr_seq);
 	ft_tree_elem(stack_a);
-	//cambiato fino qui
+	/*cambiato fino qui
 	while (*stack_b)
 	{
 		put_target_pos(stack_a, stack_b);
@@ -100,5 +113,5 @@ void	big_sort(t_stacks **stack_a, t_stacks **stack_b)
 		clever_push_a(stack_a, stack_b);
 		//if (*stack_b == NULL)
 		//	last_sort(stack_a);
-	}
+	}*/
 }
