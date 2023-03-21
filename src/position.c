@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:09:09 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/14 16:25:29 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:50:05 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	find_position(t_stacks *stack, t_stacks *to_find)
 	}
 	return (i);
 }
-
+//Utilizzata
 void	put_pos(t_stacks **stack)
 {
 	t_stacks	*app;

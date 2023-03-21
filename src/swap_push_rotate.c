@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:35:02 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/15 15:21:35 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:49:45 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	swap(t_stacks **stack, int which)
 {
-	int	app;
+	t_stacks	*app;
+	t_stacks	*app2;
 
 	if (!stack)
 		return ;
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
-	app = (*stack)->value;
-	(*stack)->value = (*stack)->next->value;
-	(*stack)->next->value = app;
-	app = (*stack)->i;
-	(*stack)->i = (*stack)->next->i;
-	(*stack)->next->i = app;
+	app = *stack;
+	app2 = app->next;
+	*stack = app2;
+	app->next = app2->next;
+	app2->next = app;
 	if (which == 97)
 		ft_printf("sa\n");
 	else if (which == 98)
@@ -47,10 +47,10 @@ void	push(t_stacks **src, t_stacks **dst, int which)
 
 	if (*src == NULL)
 		return ;
-	app = (*src)->next;
-	(*src)->next = *dst;
-	*dst = *src;
-	*src = app;
+	app = *src;
+	*src = (*src)->next;
+	app->next = *dst;
+	*dst = app;
 	if (which == 97)
 		ft_printf("pa\n");
 	else if (which == 98)

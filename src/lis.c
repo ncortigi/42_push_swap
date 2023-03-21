@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:15:01 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/17 17:30:18 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:26:52 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,47 +36,46 @@ int	*find_lis(int *copy, int size, int i, int lis_lenght)
 	int k;
 
 	k = i;
-	new_lenght = 1;
-	lis = (int *)malloc(sizeof(int) * size + 1);
+	new_lenght = 0;
+	lis = (int *)malloc(sizeof(int) * lis_lenght + 1);
 	lis[0] = copy[k];
 	while (k < size)
 	{
 		//ft_printf("ff\n");
-		if (copy[k] > lis[new_lenght - 1])
+		if (copy[k] > lis[new_lenght])
 		{
-			lis[new_lenght] = copy[k];
 			new_lenght++;
+			lis[new_lenght] = copy[k];
 		}
 		k++;
 	}
-	if (new_lenght != lis_lenght && i != size)
+	if (new_lenght != lis_lenght)
 	{
 		free(lis);
-		find_lis(copy, size, i + 1, lis_lenght);
+		return (find_lis(copy, size, i + 1, lis_lenght));
 	}
-	//ft_printf("ff\n");
 	return (lis);
 }
 
 //copy la lista di index, size la lunghezza della lista, 
 //i il numero della lista da cui partire, lis_lenght la lunghezza 
 //della lis piu grande trovata.
-int	*find_sequence(int *copy, int size, int i, int lis_lenght)
+int	find_sequence(int *copy, int size, int i, int lis_lenght)
 {
 	int	new_lenght;
 	int	*lis;
 	int k;
 
 	k = i;
-	new_lenght = 1;
+	new_lenght = 0;
 	lis = (int *)malloc(sizeof(int) * size + 1);
 	lis[0] = copy[k];
 	while (k < size)
 	{
-		if (copy[k] > lis[new_lenght - 1])
+		if (copy[k] > lis[new_lenght])
 		{
-			lis[new_lenght] = copy[k];
 			new_lenght++;
+			lis[new_lenght] = copy[k];
 		}
 		k++;
 	}
@@ -85,8 +84,7 @@ int	*find_sequence(int *copy, int size, int i, int lis_lenght)
 	{
 		if (new_lenght > lis_lenght)
 			lis_lenght = new_lenght;
-		find_sequence(copy, size, i + 1, lis_lenght);
+		return (find_sequence(copy, size, i + 1, lis_lenght));
 	}
-	ft_printf("%d\n", lis_lenght);
-	return (find_lis(copy, size, 0, lis_lenght));
+	return (lis_lenght);
 }
