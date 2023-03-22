@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:14:05 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/21 16:55:04 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:17:35 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ void			sort(t_stacks **stack_a, t_stacks **stack_b, int size);
 int				*copy_list(t_stacks *stack_a, int size);
 int				*find_lis(int *copy, int size, int i, int lis_lenght);
 int				find_sequence(int *copy, int size, int i, int lis_lenght);
-int				*calc_cost_to_a(t_stacks **stack_a, t_stacks **stack_b, int size_b, int size_a);
+int				*calc_cost_to_a(t_stacks *stack_a, t_stacks *stack_b, int size_b, int size_a);
 void			big_sort(t_stacks **stack_a, t_stacks **stack_b);
-//void			choose_best_move(t_stacks **stack_a, t_stacks **stack_b, int *costs);
+int				calculate(int a, int b);
+void			choose_best_move(t_stacks **stack_a, t_stacks **stack_b, int cost_a, int cost_b);
 
 #endif
