@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:07:04 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/22 15:49:43 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:48:25 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,3 +61,6 @@ int	calculate(int a, int b)
 	else
 		return (1);
 }
+//Fare
+void	last_sort(t_stacks **stack_a)
+{}

@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:21:32 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/22 17:31:31 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:46:12 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ int	find_best(int *move_a, int *move_b, int size_b)
 	int	pos;
 
 	i = 0;
-	pos = 0;
 	best = 2147483647;
-	while (i < size_b + 1)
+	while (i < size_b)
 	{
 		if (best > calculate(move_a[i], move_b[i]))
 		{
@@ -32,7 +31,7 @@ int	find_best(int *move_a, int *move_b, int size_b)
 	}
 	if (pos == 0)
 		return (0);
-	return (pos - 1);
+	return (pos);
 }
 //Forse il problema sta nel passare tutte le robe a questa funzione
 void	clever_push_a(t_stacks **stack_a, t_stacks **stack_b, \
@@ -45,7 +44,7 @@ void	clever_push_a(t_stacks **stack_a, t_stacks **stack_b, \
 
 	size_b = calc_size(*stack_b);
 	best_pos = find_best(move_a, move_b, size_b);
-	ft_printf("pos: %d\na: %d, b: %d\n", best_pos, move_a[best_pos], move_b[best_pos]);
+	//ft_printf("pos: %d\na: %d, b: %d\n", best_pos, move_a[best_pos], move_b[best_pos]);
 	best_move_a = move_a[best_pos];
 	best_move_b = move_b[best_pos];
 	choose_best_move(stack_a, stack_b, best_move_a, best_move_b);
@@ -105,34 +104,21 @@ void	big_sort(t_stacks **stack_a, t_stacks **stack_b)
 	int	*copy;
 	int	size;
 	int lis_lenght;
-	int	i;
 
 	size = calc_size(*stack_a);
 	copy = copy_list(*stack_a, size);
 	lis_lenght = find_sequence(copy, size, 0, 0);
 	arr_seq = find_lis(copy, size, 0, lis_lenght);
 	make_clever_push_b(stack_a, stack_b, arr_seq);
-	i = 0;
-	while (i < 10)
+	while (*stack_b)
 	{
 		put_pos(stack_b);
 		put_pos(stack_a);
 		clever_push_a(stack_a, stack_b, calc_cost_to_top(*stack_b), \
 			calc_cost_to_a(*stack_a, *stack_b, calc_size(*stack_b), \
 			calc_size(*stack_a)));
-		i++;
+		if (*stack_b == NULL)
+			last_sort(stack_a);
 	}
-
-
-	
-	/*cambiato fino qui
-	while (*stack_b)
-	{
-		put_target_pos(stack_a, stack_b);
-		//ft_printf("gg\n");
-		calc_cost(stack_a, stack_b);
-		clever_push_a(stack_a, stack_b);
-		//if (*stack_b == NULL)
-		//	last_sort(stack_a);
-	}*/
 }
+
