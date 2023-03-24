@@ -1,49 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position.c                                         :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/24 16:09:09 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/24 17:32:16 by ncortigi         ###   ########.fr       */
+/*   Created: 2023/03/24 15:41:26 by ncortigi          #+#    #+#             */
+/*   Updated: 2023/03/24 15:44:36 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_position(t_stacks *stack, t_stacks *to_find)
+t_stacks	*find_big(t_stacks *stack)
 {
-	int	i;
+	t_stacks	*max;
 
-	i = 0;
-	while (stack->i != to_find->i)
+	max = stack;
+	while (stack)
+	{
+		if (max->i < stack->i)
+			max = stack;
+		stack = stack->next;
+	}
+	return (max);
+}
+
+t_stacks	*find_little(t_stacks *stack)
+{
+	t_stacks	*min;
+
+	min = stack;
+	while (stack)
+	{
+		if (min->i > stack->i)
+			min = stack;
+		stack = stack->next;
+	}
+	return (min);
+}
+
+int	calc_size(t_stacks *stack)
+{
+	int	size;
+
+	if (stack == NULL)
+		return (0);
+	size = 0;
+	while (stack)
 	{
 		stack = stack->next;
-		i++;
+		size++;
 	}
-	return (i);
-}
-
-void	put_pos(t_stacks **stack)
-{
-	t_stacks	*app;
-	int			i;
-
-	i = 0;
-	app = *stack;
-	while (app)
-	{
-		app->pos = i;
-		app = app->next;
-		i++;
-	}
-}
-
-int	pos_for_rotate(int pos, int next_pos, int size_a)
-{
-	if (pos <= size_a / 2)
-		return (next_pos);
-	else
-		return (next_pos - size_a);
+	return (size);
 }

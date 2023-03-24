@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:14:05 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/23 18:48:08 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:31:17 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ typedef struct s_stacks
 	int				value;
 	int				i;
 	int				pos;
-	int				target_pos;
-	int				costa;
-	int 			costb;
 	struct s_stacks	*next;
 }	t_stacks;
 
@@ -49,21 +46,30 @@ void			r_rotate(t_stacks **stack, int which);
 void			ft_tree_elem(t_stacks **stack_a);
 void			ft_two_elem(t_stacks **stack_a);
 t_stacks		*find_little(t_stacks *stack);
+t_stacks		*find_big(t_stacks *stack);
 int				search_max_i(t_stacks *stack);
-int 			find_position(t_stacks *stack, t_stacks *to_find);
+int				find_position(t_stacks *stack, t_stacks *to_find);
 void			put_pos(t_stacks **stack_a);
-void			put_target_pos(t_stacks **stack_a, t_stacks **stack_b);
 int				calc_size(t_stacks *stack);
 int				my_abs(int num);
-void    		free_(t_stacks **stack_a, t_stacks **stack_b);
+void			free_(t_stacks **stack_a, t_stacks **stack_b);
 void			sort(t_stacks **stack_a, t_stacks **stack_b, int size);
 int				*copy_list(t_stacks *stack_a, int size);
 int				*find_lis(int *copy, int size, int i, int lis_lenght);
 int				find_sequence(int *copy, int size, int i, int lis_lenght);
-int				*calc_cost_to_a(t_stacks *stack_a, t_stacks *stack_b, int size_b, int size_a);
+void			second_push_b(t_stacks **stack_a, t_stacks **stack_b, \
+	int *lis, int lis_lenght);
+int				*calc_cost_to_top(t_stacks *stack);
+int				*calc_cost_to_a(t_stacks *stack_a, t_stacks *stack_b, \
+	int size_b, int size_a);
+void			clever_push_a(t_stacks **stack_a, t_stacks **stack_b, \
+	int *move_b, int *move_a);
+void			prepare_push_a(t_stacks **stack_a, t_stacks **stack_b);
 void			big_sort(t_stacks **stack_a, t_stacks **stack_b);
 int				calculate(int a, int b);
-void			choose_best_move(t_stacks **stack_a, t_stacks **stack_b, int cost_a, int cost_b);
-void			last_sort(t_stacks **stack_a);
+int				pos_for_rotate(int pos, int next_pos, int size_a);
+void			choose_best_move(t_stacks **stack_a, t_stacks **stack_b, \
+	int cost_a, int cost_b);
+void			last_sort(t_stacks **stack_a, int size_a);
 
 #endif

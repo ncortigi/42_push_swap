@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:35:02 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/20 15:49:45 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:36:05 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ss(t_stacks **stack_a, t_stacks **stack_b)
 
 void	push(t_stacks **src, t_stacks **dst, int which)
 {
-	t_stacks *app;
+	t_stacks	*app;
 
 	if (*src == NULL)
 		return ;

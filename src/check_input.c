@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:58:15 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/02/20 16:44:44 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:35:11 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ static int	check_duplicates(char **av)
 	return (0);
 }
 
-int check_input(char **av)
+int	check_input(char **av)
 {
-	int i;
-	int zeros;
+	int	i;
+	int	zeros;
 
 	zeros = 0;
 	i = 1;
@@ -81,7 +81,7 @@ int check_input(char **av)
 	{
 		if (limits(av[i]))
 			return (0);
-		i++;	
+		i++;
 	}
 	if (check_duplicates(av))
 		return (0);

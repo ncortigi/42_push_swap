@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:58:47 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/15 15:13:20 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:34:08 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ t_stacks	*take_before_last(t_stacks *stack)
 	return (stack);
 }
 
-int number_cmp(char *s1, char *s2)
+int	number_cmp(char *s1, char *s2)
 {
 	if (ft_atoi(s1) == ft_atoi(s2))
 		return (1);
 	return (0);
 }
 
-int limits(char *str)
+int	limits(char *str)
 {
 	if (ft_atoi_long(str) > 2147483647 || ft_atoi_long(str) < -2147483648)
 		return (1);
@@ -42,7 +42,7 @@ int limits(char *str)
 
 void	put_index(t_stacks *stack, int size)
 {
-	int		nb;
+	int			nb;
 	t_stacks	*app;
 	t_stacks	*high;
 

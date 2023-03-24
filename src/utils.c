@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:07:04 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/23 18:48:25 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:27:38 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	my_abs(int num)
 {
-    if (num < 0)
-        return (num * -1);
-    return (num);
+	if (num < 0)
+		return (num * -1);
+	return (num);
 }
 
 void	put_first(t_stacks **stack, t_stacks *new)
@@ -61,6 +61,32 @@ int	calculate(int a, int b)
 	else
 		return (1);
 }
-//Fare
-void	last_sort(t_stacks **stack_a)
-{}
+
+void	last_sort(t_stacks **stack_a, int size_a)
+{
+	t_stacks	*min;
+	int			pos_min;
+	int			rotations;
+
+	min = find_little(*stack_a);
+	pos_min = find_position(*stack_a, min);
+	rotations = pos_for_rotate(pos_min, pos_min, size_a);
+	if (rotations > 0)
+	{
+		while (rotations != 0)
+		{
+			rotate(stack_a, 'a');
+			rotations--;
+		}
+	}
+	else if (rotations < 0)
+	{
+		while (rotations != 0)
+		{
+			r_rotate(stack_a, 'a');
+			rotations++;
+		}
+	}
+	else
+		return ;
+}
