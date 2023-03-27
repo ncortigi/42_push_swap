@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:41:26 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/24 15:44:36 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:51:54 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,18 @@ int	calc_size(t_stacks *stack)
 		size++;
 	}
 	return (size);
+}
+
+t_stacks	*take_last(t_stacks *stack)
+{
+	while (stack && stack->next)
+		stack = stack->next;
+	return (stack);
+}
+
+t_stacks	*take_before_last(t_stacks *stack)
+{
+	while (stack && stack->next && stack->next->next)
+		stack = stack->next;
+	return (stack);
 }

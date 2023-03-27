@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:14:05 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/24 17:31:17 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:22:06 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ typedef struct s_stacks
 	struct s_stacks	*next;
 }	t_stacks;
 
-int				check_input(char **av);
+int				check_input(char **av, int ac);
 int				number_cmp(char *s1, char *s2);
-int				limits(char *str);
+int				limits(char **str);
 t_stacks		*take_last(t_stacks *stack);
 t_stacks		*take_before_last(t_stacks *stack);
 void			put_first(t_stacks **stack, t_stacks *new);
 void			add_to_stack_bot(t_stacks **stack, t_stacks *new);
-t_stacks		*create(int ac, char **av);
+int				flag_return(int to_return, char **to_free, int flag);
+char			**split_one_arg(char **av);
+t_stacks		*create(int ac, char **av, int check);
 void			put_index(t_stacks *stack, int size);
 int				check_sort(t_stacks *stack);
 void			rr(t_stacks **stack_a, t_stacks **stack_b);
