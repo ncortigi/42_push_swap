@@ -6,7 +6,7 @@
 /*   By: ncortigi <ncortigi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:15:01 by ncortigi          #+#    #+#             */
-/*   Updated: 2023/03/24 17:47:28 by ncortigi         ###   ########.fr       */
+/*   Updated: 2023/03/27 12:24:49 by ncortigi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,15 @@ int	*find_lis(int *copy, int size, int i, int lis_lenght)
 	}
 	return (lis);
 }
-//linea in piu'
+
+int	new_lis_lenght(int new_lenght, int lis_lenght)
+{
+	if (new_lenght > lis_lenght)
+		return (new_lenght);
+	else
+		return (lis_lenght);
+}
+
 int	find_sequence(int *copy, int size, int i, int lis_lenght)
 {
 	int	new_lenght;
@@ -81,8 +89,7 @@ int	find_sequence(int *copy, int size, int i, int lis_lenght)
 	free(lis);
 	if (i < size)
 	{
-		if (new_lenght > lis_lenght)
-			lis_lenght = new_lenght;
+		lis_lenght = new_lis_lenght(new_lenght, lis_lenght);
 		return (find_sequence(copy, size, i + 1, lis_lenght));
 	}
 	return (lis_lenght);
